@@ -1,0 +1,12 @@
+# 베이스 이미지 선택
+FROM openjdk:17-jdk-slim
+
+# 작업 디렉토리 설정
+WORKDIR /app
+
+# JAR 파일을 컨테이너에 복사
+COPY build/libs/back-end.jar back-end.jar
+
+# 애플리케이션 실행
+ENTRYPOINT ["java", "-jar", "back-end.jar"]
+
