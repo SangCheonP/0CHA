@@ -4,7 +4,7 @@ type IconSvgProps = {
   Ico: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   width: string;
   height: string;
-  color: string;
+  color?: string;
 };
 
 const IconSvg: React.FC<IconSvgProps> = ({ Ico, width, height, color }) => {
