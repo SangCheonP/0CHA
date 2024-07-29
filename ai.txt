@@ -1,1 +1,3 @@
-ai
+ai git
+test 1차
+test 2차 7/29(15:41)
