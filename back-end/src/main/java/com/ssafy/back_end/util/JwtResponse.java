@@ -1,4 +1,4 @@
-package com.ssafy.back_end.auth.model;
+package com.ssafy.back_end.util;
 
 public class JwtResponse {
     private final String accessToken;
