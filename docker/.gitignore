@@ -1,2 +1,3 @@
-docker/mysql/data/
-docker/jenkins/data/
+mysql/data/
+jenkins/data/
+redis/data
