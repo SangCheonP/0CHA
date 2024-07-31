@@ -1,4 +1,11 @@
-FROM ubuntu:latest
-LABEL authors="pswlo"
+# Run stage: 실제 실행 단계
+FROM openjdk:17-jdk-slim
 
-ENTRYPOINT ["top", "-b"]
+# 작업 디렉토리 설정
+WORKDIR /app
+
+# 빌드 단계에서 생성된 JAR 파일을 복사합니다.
+COPY /build/libs/*.jar back-end.jar
+
+# 컨테이너 시작 시 실행할 명령어 설정
+ENTRYPOINT ["java", "-jar", "back-end.jar"]
