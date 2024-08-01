@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class UserPageListDto {
     private int id;
     private String image;
+    private String nickname;
 }

@@ -1,22 +1,3 @@
-package com.ssafy.back_end.sns.model;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import java.sql.Timestamp;
-
-@Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class FeedDto {
-    private int id;
-    private int userId;
-    private int routineId;
-    private String image;
-    private String content;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d7bef09d883e6f5294ebac341f13373b3034dd9bdccedd0f1b643d2afa03c061
+size 565
