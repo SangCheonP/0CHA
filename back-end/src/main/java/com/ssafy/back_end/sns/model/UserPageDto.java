@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserPageDto {
+    private int id;
     private String nickname;
     private String profileImage;
     private int feedCount;
