@@ -1,3 +1,23 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a2442425b784d5f4c9ed97ac1b0581d0606a77a62b9da1f9ce68e459fb36928a
-size 528
+package com.ssafy.back_end.sns.model;
+
+import lombok.*;
+
+import java.sql.Timestamp;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ItemDto {
+    private int id;
+    private int userId;
+    private String title;
+    private String content;
+    private int price;
+    private int isSold;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private String district;
+    private String siGunGu;
+}
