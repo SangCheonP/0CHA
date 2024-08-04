@@ -7,4 +7,5 @@ import java.util.List;
 public interface SnsChatService {
     public List<MessageDto> getMessageHistory(int roomId);
     public MessageDto saveMessage(int senderId, int roomId, String message);
+    public int getOrCreateRoom(int senderId, int receiverId);
 }
