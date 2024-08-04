@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.back_end.user.mapper.UserMapper">
     <select id="selectAll" resultType="UserDto">
-        select * from users;
+        select *
+        from users;
     </select>
 </mapper>
