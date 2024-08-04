@@ -7,5 +7,5 @@ export const darkTheme: DefaultTheme = {
   btnColor: '#ccff34',
   btnTextColor: '#000',
   mainColor: '#ccff34',
-  subColor: '#323232',
+  subColor: '#212121',
 };
