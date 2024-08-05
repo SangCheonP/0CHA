@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:650b7cad1bb51c0ebb934bc9d9d11891f5630278f54144dc5ce74947b1808d8b
-size 716
+package com.ssafy.back_end.sns.mapper;
+
+import com.ssafy.back_end.sns.model.MessageDto;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
+
+@Mapper
+public interface SnsChatMessageMapper {
+    
+    // 메시지 저장
+    void saveMessage(MessageDto message);
+
+    // 특정 채팅방 메시지 모두 가져오기
+    List<MessageDto> findByRoomId(int roomId);
+}
