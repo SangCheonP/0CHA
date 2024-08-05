@@ -1,1 +1,6 @@
+<<<<<<< HEAD
+be1
+test1
+=======
 be-cyh
+>>>>>>> 25a0c791fee36e1e947bb7bcb2b0bd5576b4369a
