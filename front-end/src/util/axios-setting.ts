@@ -1,8 +1,8 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { Axios, AxiosRequestConfig } from 'axios';
 
 export const localAxios = () => {
-  const instance = axios.create({
-    baseURL: '/api',
+  const instance: Axios = axios.create({
+    baseURL: '/proxy',
     withCredentials: true,
   });
 
