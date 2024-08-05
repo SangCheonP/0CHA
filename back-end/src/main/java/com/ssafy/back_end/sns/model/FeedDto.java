@@ -1,13 +1,11 @@
 package com.ssafy.back_end.sns.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,4 +17,8 @@ public class FeedDto {
     private String content;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private int likeCount;
+    private int commentCount;
+    private String nickname;
+    private String profileImage;
 }

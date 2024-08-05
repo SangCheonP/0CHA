@@ -7,5 +7,5 @@ public interface UserModifyService {
 
     int findPassword(UserDto userDto);   //비밀번호 찾기 및 인증번호 발송
 
-    int resetPassword(UserDto userDto);   //비밀번호 초기화ndEmail();
+    int resetPassword(UserDto userDto);   //비밀번호 초기화
 }
