@@ -5,5 +5,5 @@ const local = localAxios();
 
 export const login = async (param, success, fail) => {
   console.log(param);
-  await local.post(`/auth/login`, param).then(success).then(fail);
+  await local.post(`/auth/login/`, param).then(success).then(fail);
 };
