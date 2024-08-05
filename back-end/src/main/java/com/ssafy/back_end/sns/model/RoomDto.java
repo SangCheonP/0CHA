@@ -9,5 +9,5 @@ public class RoomDto {
     private int id;
     private int user1Id;
     private int user2Id;
-    private Timestamp createAt;
+    private Timestamp createdAt;
 }
