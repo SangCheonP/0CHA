@@ -1,2 +1,0 @@
-user default on nopass ~* +@all
-user health on >1234 ~* +@all
