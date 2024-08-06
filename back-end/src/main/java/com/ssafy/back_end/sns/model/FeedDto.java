@@ -21,4 +21,6 @@ public class FeedDto {
     private int commentCount;
     private String nickname;
     private String profileImage;
+
+    private int isLike;
 }
