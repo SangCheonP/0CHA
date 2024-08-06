@@ -10,4 +10,5 @@ public interface WorkoutExerciseService {
     boolean isFavoriteExercise(int exerciseId, int userId);
     int favoriteExercise(int exerciseId, int userId);
     int unfavoriteExercise(int exerciseId, int userId);
+    List<ExerciseDto> getFavoriteExercisesByUserId(int userId);
 }
