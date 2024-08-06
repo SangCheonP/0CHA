@@ -1,13 +1,3 @@
-package com.ssafy.back_end.auth.mapper;
-
-import com.ssafy.back_end.auth.model.UserDto;
-import org.apache.ibatis.annotations.Mapper;
-
-@Mapper
-public interface UserRegisterMapper {
-    int register(UserDto userDto);   //회원가입
-
-    int checkEmail(String email);   //이메일 인증번호 발송
-
-    int checkNickname(String nickname);   //닉네임 중복체크
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:433561e01a689167266d47c8fb30be23d8359d3e626d9f81c3e369c284e95249
+size 535
