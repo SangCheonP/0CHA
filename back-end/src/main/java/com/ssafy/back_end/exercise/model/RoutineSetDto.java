@@ -9,10 +9,11 @@ import lombok.*;
 @NoArgsConstructor
 public class RoutineSetDto {
     private int id;
-    private int routineDetail;
+    private int routineDetailId;
     private int sequence;
     private int weight;
     private int count;
     private int set;
     private boolean isComplete;
 }
+
