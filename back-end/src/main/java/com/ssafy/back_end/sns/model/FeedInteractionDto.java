@@ -16,7 +16,6 @@ public class FeedInteractionDto {
     private String interactionType;
     private String comment;
     private Timestamp createdAt;
-
     private String nickname;
     private String profileImage;
 }
