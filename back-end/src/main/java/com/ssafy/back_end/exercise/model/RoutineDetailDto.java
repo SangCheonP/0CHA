@@ -2,6 +2,8 @@ package com.ssafy.back_end.exercise.model;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -12,4 +14,6 @@ public class RoutineDetailDto {
     private int routineId;
     private int exerciseId;
     private int sequence;
+    private List<RoutineSetDto> sets;
 }
+
