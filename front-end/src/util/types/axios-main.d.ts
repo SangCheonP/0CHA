@@ -1,16 +1,3 @@
-export interface Profile {
-  nickname: string;
-  profileImage: stirng;
-}
-
-export interface MyInfo {
-  height: number;
-  weight: number;
-  distrct: string;
-  siGunGu: string;
-}
-
-export interface changePw {
-  curPassword: string;
-  newPassword: string;
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e51517a91fdd50b5cd0ea9b96f08f6f01f674fc22efae678aea324c3184945a8
+size 519
