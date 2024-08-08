@@ -1,5 +1,5 @@
 # Nginx Official Image
-FROM nginx:latest
+FROM nginx:alpine
 
 # Expose Port
 EXPOSE 80
