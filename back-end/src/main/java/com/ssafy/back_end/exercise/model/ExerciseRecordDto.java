@@ -2,7 +2,7 @@ package com.ssafy.back_end.exercise.model;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -10,10 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExerciseRecordDto {
-    private int exerciseId;
-    private String name;
-    private int weight;
-    private int count;
-    private LocalDateTime date;
+    private LocalDate date;
+    private String exerciseName;
+    private double volume;
 }
-

@@ -1,11 +1,3 @@
-package com.ssafy.back_end.record.service;
-
-import com.ssafy.back_end.record.model.RecordInbodyDto;
-
-import java.util.List;
-
-public interface RecordService {
-    List<RecordInbodyDto> getInbody(int userId);   //인바디 결과 조회
-
-    int insertInbody(RecordInbodyDto recordInbodyDto);   //인바디 결과 저장
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:c20e6b394c0daf20313bcc5cc2a75cf38372cf59e79054208853a6a520e54347
+size 541
