@@ -13,4 +13,5 @@ public class ExerciseDto {
     private String description;
     private String category;
     private String image;
+    private boolean isLike;  // 좋아요 여부 필드 추가
 }
