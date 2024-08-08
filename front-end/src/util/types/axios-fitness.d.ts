@@ -1,24 +1,3 @@
-export interface newRoutine {
-  name: string;
-  dueDate: string;
-}
-
-export interface Routine {
-  title: string;
-  dueDate: string;
-  exercises: exercise[];
-}
-
-type exercise = {
-  id: number;
-  name: string;
-  detail: detail[];
-};
-
-type detail = {
-  id: number;
-  set: number;
-  weight: number;
-  count: number;
-  isComplete: boolean;
-};
+version https://git-lfs.github.com/spec/v1
+oid sha256:82282b2d11ffa1a95a368b023ba097d93b63c7cff056fbeafc3c2352770e1016
+size 1232
