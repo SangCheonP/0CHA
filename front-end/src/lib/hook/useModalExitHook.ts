@@ -1,15 +1,3 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from './useReduxHook';
-import { modalActions, selectModalCalendar } from '../../store/modal';
-
-export const useModalExitHook = (): void => {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    return () => {
-      dispatch(modalActions.CloseCalendar());
-      dispatch(modalActions.CloseComment());
-      dispatch(modalActions.CloseMarket());
-      dispatch(modalActions.CloseUserSearch());
-    };
-  }, []);
-};
+version https://git-lfs.github.com/spec/v1
+oid sha256:8a983d66a186c49b166df05f19e55fb517e581bb5e6154e57d35729050ae0503
+size 652
