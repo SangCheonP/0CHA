@@ -1,5 +1,6 @@
 package com.ssafy.back_end.exercise.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.util.List;
@@ -10,7 +11,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoutineDetailDto {
+    @JsonIgnore
     private int id;
+    @JsonIgnore
     private int routineId;
     private int exerciseId;
     private String exerciseName; // 운동 이름 추가
