@@ -1,15 +1,3 @@
-package com.ssafy.back_end.record.mapper;
-
-import com.ssafy.back_end.record.model.RecordInbodyDto;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
-
-@Mapper
-public interface RecordMapper {
-
-    List<RecordInbodyDto> getInbody(@Param ("userId") int userId);   //인바디 결과 조회
-
-    int insertInbody(RecordInbodyDto recordInbodyDto);   //인바디 결과 저장
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:bffb9f998046afd7ca66f2e33096399a1a3b8e203c1970b0b99be6061d6bfb37
+size 688
