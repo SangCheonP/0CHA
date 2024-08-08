@@ -1,14 +1,3 @@
-package com.ssafy.back_end.exercise.service;
-
-import com.ssafy.back_end.exercise.model.ExerciseDto;
-
-import java.util.List;
-
-public interface WorkoutExerciseService {
-    List<ExerciseDto> getAllExercises();
-    ExerciseDto getExerciseById(int exerciseId);
-    boolean isFavoriteExercise(int exerciseId, int userId);
-    int favoriteExercise(int exerciseId, int userId);
-    int unfavoriteExercise(int exerciseId, int userId);
-    List<ExerciseDto> getFavoriteExercisesByUserId(int userId);
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:0afaa665fe72730780e727266f9ca04345aeecfc0b0f6d5351bc6364c39acc94
+size 784
