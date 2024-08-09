@@ -1,9 +1,6 @@
 package com.ssafy.back_end.sns.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 
@@ -11,6 +8,7 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class ItemDetailDto {
     private int id;
     private int itemId;
@@ -21,3 +19,4 @@ public class ItemDetailDto {
     private String saveName;
     private Timestamp uploadedAt;
 }
+
