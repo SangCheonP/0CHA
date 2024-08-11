@@ -10,3 +10,12 @@ export interface snsItemWrite {
   content: string;
   images: string[];
 }
+
+export interface snsItemList {
+  userId: number;
+  page: number;
+  limit: number;
+  district: string;
+  siGunGu: string;
+  title: string;
+}
