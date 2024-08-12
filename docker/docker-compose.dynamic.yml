@@ -1,3 +1,22 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a6f598aed900b7f5b68ecf9cbffa9cdca46f12c5b765c894040be77863ad7d3f
-size 728
+version: "3"
+
+services:
+  spring:
+    image: parksangcheon/spring:latest
+    container_name: spring-container
+    environment:
+      - TZ=${TZ}
+      - SPRING_MYSQL_HOST=mysql-container
+      - SPRING_REDIS_HOST=redis-container
+    volumes:
+      - /home/ubuntu/images:/home/ubuntu/images
+    ports:
+      - "${SPRING_BINDING_PORT}:8081"
+    restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
+
