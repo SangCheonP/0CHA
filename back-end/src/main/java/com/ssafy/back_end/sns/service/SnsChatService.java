@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:524916d0c5f35a57f35c85d167aa8e6de4d7b5f8a62e96d4971e6e22bc3eb9df
-size 634
+package com.ssafy.back_end.sns.service;
+
+import com.ssafy.back_end.auth.model.UserDto;
+import com.ssafy.back_end.sns.model.MessageDto;
+
+import java.util.List;
+
+public interface SnsChatService {
+    public List<MessageDto> getMessageHistory(int roomId);
+    public MessageDto saveMessage(int senderId, int roomId, String message);
+    public int getOrCreateRoom(int senderId, int receiverId);
+    public List<UserDto> getUsersExcludeMe(int excludeUserId);
+}
