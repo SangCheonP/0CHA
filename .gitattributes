@@ -1,4 +1,2 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3a8aced0e8c5ba0a0a30be58f0bf292edd822bba4e809ffe9b18e21f32f3f15f
-size 53235
-*.* filter=lfs diff=lfs merge=lfs -text
+.DS_Store filter=lfs diff=lfs merge=lfs -text
+README.md filter=lfs diff=lfs merge=lfs -text
