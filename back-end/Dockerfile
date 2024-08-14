@@ -6,6 +6,9 @@ WORKDIR /app
 
 # 필요한 디렉토리 생성
 RUN mkdir -p /home/ubuntu/images/item
+RUN mkdir -p /home/ubuntu/images/feed
+RUN mkdir -p /home/ubuntu/images/exercise
+RUN mkdir -p /home/ubuntu/images/profile
 
 # 빌드 단계에서 생성된 JAR 파일을 복사합니다.
 COPY /build/libs/*.jar back-end.jar
