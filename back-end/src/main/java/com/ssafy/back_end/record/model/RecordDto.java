@@ -12,7 +12,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class RecordDto {
     private LocalDate date;
-    private double maxWeight; // 1RM
+    private double benchpress;
+    private double squart;
+    private double deadlift;
     private double totalVolume; // 총 운동량
     private int totalTime; // 총 운동 시간 (단위: 초)
 }
