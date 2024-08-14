@@ -1,3 +1,7 @@
 mysql/data/
 jenkins/data/
 redis/data
+# Certbot 관련 디렉터리 제외
+docker/data/certbot/conf/
+docker/data/certbot/www/
+
