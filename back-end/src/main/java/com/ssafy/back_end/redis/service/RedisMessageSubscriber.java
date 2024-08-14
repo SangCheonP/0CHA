@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1a23dd9c0704ca7e526ddef3bfb37f603c8ddfbb1500cdd03a8e074f067f2d15
-size 1988
+package com.ssafy.back_end.redis.service;
+
+import org.springframework.data.redis.connection.Message;
+import org.springframework.data.redis.connection.MessageListener;
+import org.springframework.stereotype.Service;
+
+@Service
+public class RedisMessageSubscriber implements MessageListener {
+
+    @Override
+    public void onMessage(Message message, byte[] pattern) {
+        System.out.println("Received message: " + new String(message.getBody()));
+    }
+}
