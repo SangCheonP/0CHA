@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:cc814f272f423257b16c5d9a3ce2406a5869b97de44f62c69f6113cfda48ea2f
-size 528
+package com.ssafy.back_end.auth.service;
+
+import com.ssafy.back_end.auth.model.UserDto;
+
+public interface UserRegisterService {
+    int register(UserDto userDto);   //회원가입
+
+    int userInfo(UserDto userDto);   //추가정보 입력
+
+    int checkEmail(String email);   //이메일 인증번호 발송
+
+    int checkNickname(String nickname);   //닉네임 중복체크
+
+    void sendEmail(String email, int authCode);   //이메일 인증 전송
+
+}
