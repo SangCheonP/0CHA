@@ -1,1 +1,0 @@
-{"tfjsVersion":"1.3.1","tmVersion":"0.8.6","packageVersion":"0.8.6","packageName":"@teachablemachine/pose","timeStamp":"2024-08-02T01:16:51.108Z","userMetadata":{},"modelName":"my-pose-model","labels":["왼쪽","가운데","오른쪽","주먹 왼쪽","주먹 가운데","주먹 오른쪽"],"modelSettings":{"posenet":{"architecture":"MobileNetV1","outputStride":16,"inputResolution":257,"multiplier":0.75}}}
