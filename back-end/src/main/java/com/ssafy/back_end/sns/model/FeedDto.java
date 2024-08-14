@@ -17,8 +17,10 @@ public class FeedDto {
     private String content;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-    private int like;
+    private int likeCount;
     private int commentCount;
     private String nickname;
     private String profileImage;
+
+    private int isLike;
 }
