@@ -1,15 +1,3 @@
-package com.ssafy.back_end.auth.service;
-
-import com.ssafy.back_end.auth.model.UserDto;
-
-public interface UserLoginService {
-    UserDto login(UserDto userDto);   //로그인
-
-    void storeRefreshToken(int userId, String token);   //리프레시 토큰 테이블에 저장
-
-    void invalidateRefreshToken(int userId);   //리프레시 토큰 삭제
-
-//    String social(UserDto userDto);   //소셜 로그인
-//
-//    String socalToken(UserDto userDto);   //소셜 로그인 회원인증
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a7b0b3d4c46d7cad0bc1cdf5b46ab6e288fdb2b87d9788e49e2193dccc635480
+size 579

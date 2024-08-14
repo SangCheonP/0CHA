@@ -17,4 +17,6 @@ public class UserPageDto {
     private int itemCount;
     private int followedIdCount;
     private int followerIdCount;
+
+
 }
