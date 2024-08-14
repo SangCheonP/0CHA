@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 @Mapper
-public interface SnsChatMessageMapper {
+public interface  SnsChatMessageMapper {
     
     // 메시지 저장
     void saveMessage(MessageDto message);
