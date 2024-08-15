@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:448281768d49fb0a7541e37fd42bbee6cfd51df898f3af3c7f3d5187c636fce2
-size 526
+package com.ssafy.back_end.oauth.domain;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+// JPA의 Jpa repository를 상속받아 자동으로 CRUD를 지원
+public interface OauthMemberRepository extends JpaRepository<OauthMember, Long> {
+
+    // OauthMember 객체를 저장하고, 조회하는 기능 제공
+    Optional<OauthMember> findByOauthId(OauthId oauthId);
+}

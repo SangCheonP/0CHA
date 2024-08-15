@@ -1,14 +1,16 @@
-package com.ssafy.back_end.oauth.infra.oauth.google.dto;
+package com.ssafy.back_end.oauth.infra.oauth.github.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(SnakeCaseStrategy.class)
-public record GoogleToken(
+public record GithubToken(
+        String tokenType,
         String accessToken,
+        String idToken,
         Integer expiresIn,
         String refreshToken,
-        String scope,
-        String tokenType
+        Integer refreshTokenExpiresIn,
+        String scope
 ) {
 }

@@ -5,8 +5,8 @@ import static java.util.Locale.ENGLISH;
 public enum OauthServerType {
 
     KAKAO,
-    Google,
-    NAVER
+    GOOGLE,
+    GITHUB,
     ;
 
     public static OauthServerType fromName(String type) {
