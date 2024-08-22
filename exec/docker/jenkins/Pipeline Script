@@ -1,0 +1,180 @@
+pipeline {
+    agent any
+
+    environment {
+        GIT_URL = ""
+        DOCKER_IMAGE_NAME = "parksangcheon/spring"
+        ENV_FILE = '.env.jenkins'
+        DYNAMIC_COMPOSE_FILE = 'docker-compose.dynamic.yml'
+        STATIC_COMPOSE_FILE = 'docker-compose.static.yml'
+    }
+
+    stages {
+        stage('Prepare Workspace') {
+            steps {
+                script {
+                    // 작업 공간 준비
+                    if (fileExists('S11P12B310')) {
+                        // 기존 디렉토리 제거
+                        sh "rm -rf S11P12B310"
+                    }
+                    // Git 저장소 클론
+                    sh "git clone ${GIT_URL} S11P12B310"
+                    // 작업 공간 준비
+                    // if (!fileExists('S11P12B310/.git')) {
+                    //     // Git 저장소 클론
+                    //     sh "git clone ${GIT_URL} S11P12B310"
+                    // } else {
+                    //     // Git 저장소 업데이트
+                    //     dir('S11P12B310') {
+                    //         sh "git pull"
+                    //         sh "git branch"
+                    //     }
+                    // }
+                }
+            }
+        }
+        stage('Prepare Pem') {
+            steps {
+                script {
+                    // 마운트된 호스트 디렉토리에서 젠킨스 컨테이너 내부로 파일 복사
+                    sh '''
+                    if [ -d /var/jenkins_home/workspace/CP-Pipeline/S11P12B310/docker/data ]; then
+                        rm -rf /var/jenkins_home/workspace/CP-Pipeline/S11P12B310/docker/data
+                    fi
+                    mkdir -p /var/jenkins_home/workspace/CP-Pipeline/S11P12B310/docker/data
+                    cp -r /host_data/* /var/jenkins_home/workspace/CP-Pipeline/S11P12B310/docker/data/
+                    '''
+                }
+            }
+        }
+        stage('Detect Changes') {
+            steps {
+                script {
+                    dir('S11P12B310') {
+                        def changes = sh(script: "git diff --name-only HEAD~2", returnStdout: true).trim().split("\n")
+                        env.CHANGES = changes.join(" ")
+                        echo "Changes detected: ${env.CHANGES}"
+                    }
+                }
+            }
+        }
+        stage('Java Gradle Build') {
+            when {
+                expression { env.CHANGES.contains('back-end') }
+            }
+            steps {
+                echo "Java Gradle Build started...."
+                dir('S11P12B310/back-end') {
+                    sh "chmod +x gradlew"
+                    sh "./gradlew clean bootJar"
+                    sh "pwd"
+                    sh "ls -al"
+                }
+                echo "Java Gradle Build completed...."
+            }
+        }
+        stage('Build Docker Image') {
+            when {
+                expression { env.CHANGES.contains('back-end') }
+            }
+            steps {
+                echo "Building Docker image..."
+                dir('S11P12B310/back-end') {
+                    sh "docker build -t ${DOCKER_IMAGE_NAME} ."
+                    sh "docker images | grep ${DOCKER_IMAGE_NAME}"
+                    echo "Docker image ${DOCKER_IMAGE_NAME} has been created successfully."
+                }
+            }
+        }
+        stage('Deploy with Docker Compose') {
+            steps {
+                script {
+                    def staticServices = []
+                    def dynamicServices = []
+                    def staticComposeChanged = env.CHANGES.contains('docker-compose.static.yml1')
+                    def dynamicComposeChanged = env.CHANGES.contains('docker-compose.dynamic.yml1')
+
+                    // if (env.CHANGES.contains('docker/mysql')) {
+                    //     staticServices.add('mysql')
+                    // }
+                    // if (env.CHANGES.contains('docker/redis')) {
+                    //     staticServices.add('redis')
+                    // }
+                    // if (env.CHANGES.contains('docker/proxy-nginx')) {
+                    //     staticServices.add('proxy-nginx')
+                    // }
+                    // if (env.CHANGES.contains('docker/react-nginx') || env.CHANGES.contains('front-end')) {
+                    //     dynamicServices.add('react-nginx')
+                    // }
+                    if (env.CHANGES.contains('back-end')) {
+                        dynamicServices.add('spring')
+                    }
+
+                    dir('S11P12B310/docker') {
+                        if (staticComposeChanged) {
+                            // 모든 정적 컨테이너를 재생성
+                            sh "docker-compose --env-file ${ENV_FILE} -f ${STATIC_COMPOSE_FILE} up -d --no-deps --force-recreate"
+                        } else if (staticServices.size() > 0) {
+                            // 정적 컨테이너는 설정 파일 변경 시 재시작만 수행
+                            sh "docker-compose --env-file ${ENV_FILE} -f ${STATIC_COMPOSE_FILE} up --build --force-recreate -d ${staticServices.join(' ')}"
+                        } else {
+                            echo "정적 컨테이너에 변화가 없습니다."
+                        }
+
+                        if (dynamicComposeChanged) {
+                            // 모든 동적 컨테이너를 재생성 및 빌드
+                            //sh "cat /var/jenkins_home/workspace/CP-Pipeline/S11P12B310/docker/react-nginx/nginx.conf"
+                            sh "docker-compose --env-file ${ENV_FILE} -f ${DYNAMIC_COMPOSE_FILE} build"
+                            sh "docker-compose --env-file ${ENV_FILE} -f ${DYNAMIC_COMPOSE_FILE} up -d --no-deps --force-recreate"
+                        } else if (dynamicServices.size() > 0) {
+                            // 변경된 동적 컨테이너만 재생성
+                            sh "docker-compose --env-file ${ENV_FILE} -f ${DYNAMIC_COMPOSE_FILE} build ${dynamicServices.join(' ')}"
+                            sh "docker-compose --env-file ${ENV_FILE} -f ${DYNAMIC_COMPOSE_FILE} up -d --no-deps --force-recreate ${dynamicServices.join(' ')}"
+                        } else {
+                            echo "동적 컨테이너에 변화가 없습니다."
+                        }
+
+                        sh "docker-compose --env-file ${ENV_FILE} -f ${STATIC_COMPOSE_FILE} ps"
+                        sh "docker-compose --env-file ${ENV_FILE} -f ${DYNAMIC_COMPOSE_FILE} ps"
+                    }
+                    
+                    if (env.CHANGES.contains('front-end')) {
+                        dir('S11P12B310/front-end') {
+                            // 컨테이너가 실행 중인지 확인하고 멈춤
+                            if (sh(script: "docker ps --filter 'name=react-nginx-container' --format '{{.Names}}'", returnStdout: true).trim()) {
+                                sh "docker stop react-nginx-container"
+                            }
+                            
+                            // 컨테이너가 존재하는지 확인하고 삭제
+                            if (sh(script: "docker ps -a --filter 'name=react-nginx-container' --format '{{.Names}}'", returnStdout: true).trim()) {
+                                sh "docker rm react-nginx-container"
+                            }
+                    
+                            // 이미지가 존재하는지 확인하고 삭제
+                            if (sh(script: "docker images -q react-nginx-custom:latest", returnStdout: true).trim()) {
+                                sh "docker rmi react-nginx-custom:latest"
+                            }
+                    
+                            sh "docker build -t react-nginx-custom ."
+                            sh "docker run -d -p 3000:3000 --network app-network --name react-nginx-container react-nginx-custom:latest"
+                        }
+                    }
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                echo "Pushing Docker image..."
+                dir('S11P12B310/docker') {
+                    // Docker login and push
+                    sh """
+                    export DOCKER_PASSWORD=""
+                    echo \$DOCKER_PASSWORD | docker login -u parksangcheon --password-stdin
+                    docker push ${DOCKER_IMAGE_NAME}
+                    """
+                }
+            }
+        }
+    }
+}
